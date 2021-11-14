@@ -19,12 +19,12 @@ function JewelryItem(item) {
 
   return (
     <div className="card px-1 py-1">
-      <Link to={`/jewelryItem/${_id}`}>
+      <Link to={`/jewelryItem/${JewelryItem._id}`}>
         <img alt={jewelryName} src={`/images/${JewelryItem.jewelryPhoto}`} />
-        <p>{name}</p>
+        <p>{JewelryItem.jewelryName}</p>
       </Link>
       <div>
-        <span>purchase price: ${purchasedPrice}</span>
+        <span>purchase date: {purchasedDate}</span>
         <span>description: {description}</span>
         <span>item price: {jewelryPrice}</span>
         <span>assessed value: {assessedValue}</span>

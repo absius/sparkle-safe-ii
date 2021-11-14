@@ -1,12 +1,11 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-
 import JewelryItem from "../JewelryItem";
-import { QUERY_JEWELRY } from "../../utils/queries";
+import { QUERY_JEWELRY_ITEM } from "../../utils/queries";
 import spinner from "../../assets/spinner.gif";
 
 function JewelryList() {
-  const { loading, data } = useQuery(QUERY_JEWELRY);
+  const { loading, data } = useQuery(QUERY_JEWELRY_ITEM);
 
   const jewelryList = data?.jewelryList || [];
 

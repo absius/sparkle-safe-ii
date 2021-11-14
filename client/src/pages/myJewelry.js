@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import jewelryItem from "../components/JewelryItem";
+import jewelryList from "../components/JewelryList";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
 
-function myJewelry() {
+function MyJewelry() {
   const { data } = useQuery(QUERY_USER);
   let user;
 
@@ -26,7 +27,7 @@ function myJewelry() {
               <div key={jewelryItem._id} className="my-2">
                 <h3>
                   {new Date(
-                    parseInt(jewelryList.dateAdded)
+                    parseInt(jewelryItem.dateAdded)
                   ).toLocaleDateString()}
                 </h3>
                 <div className="flex-row">
@@ -53,4 +54,4 @@ function myJewelry() {
   );
 }
 
-export default myJewelry;
+export default MyJewelry;

@@ -1,41 +1,35 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
-export const QUERY_PRODUCTS = gql`
-  query getProducts($category: ID) {
-    products(category: $category) {
+export const QUERY_JEWELRY_ITEM = gql`
+  query getJewelry($jewelry: ID) {
+    jewelry(description: $description) {
       _id
-      name
+      jewelryName
       description
-      price
-      quantity
-      image
-      category {
-        _id
-      }
+      jewelryPrice
+      assessedValue
+      jewelryAssessor
+      purchaseDate
+      jewelryWarranty
+      receiptPhoto
+      createdAt
     }
   }
 `;
 
-export const QUERY_ALL_PRODUCTS = gql`
+export const QUERY_JEWELRY_LIST = gql`
   {
-    products {
+    jewelry {
       _id
-      name
+      jewelryName
       description
-      price
-      quantity
-      category {
-        name
-      }
-    }
-  }
-`;
-
-export const QUERY_CATEGORIES = gql`
-  {
-    categories {
-      _id
-      name
+      jewelryPrice
+      assessedValue
+      jewelryAssessor
+      purchaseDate
+      jewelryWarranty
+      receiptPhoto
+      createdAt
     }
   }
 `;
@@ -45,17 +39,17 @@ export const QUERY_USER = gql`
     user {
       firstName
       lastName
-      orders {
+      jewelry {
         _id
+        jewelryName
+        description
+        jewelryPrice
+        assessedValue
+        jewelryAssessor
         purchaseDate
-        products {
-          _id
-          name
-          description
-          price
-          quantity
-          image
-        }
+        jewelryWarranty
+        receiptPhoto
+        createdAt
       }
     }
   }
