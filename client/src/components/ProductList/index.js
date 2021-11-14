@@ -1,38 +1,43 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
+import React from "react";
+import { useQuery } from "@apollo/client";
 
-import ProductItem from '../ProductItem';
-import { QUERY_PRODUCTS } from '../../utils/queries';
-import spinner from '../../assets/spinner.gif';
+import JewelryItem from "../JewelryItem";
+import { QUERY_JEWELRY } from "../../utils/queries";
+import spinner from "../../assets/spinner.gif";
 
-function ProductList({ currentCategory }) {
-  const { loading, data } = useQuery(QUERY_PRODUCTS);
+function JewelryList({ currentCategory }) {
+  const { loading, data } = useQuery(QUERY_JEWELRY);
 
-  const products = data?.products || [];
+  const jewelryList = data?.jewelryList || [];
 
-  function filterProducts() {
-    if (!currentCategory) {
-      return products;
+  function filterJewelryList() {
+    if (jewelryList.length) {
+      return jewelryList;
+    } else {
+      return "You have not added any jewelry yet.";
     }
-
-    return products.filter(
-      (product) => product.category._id === currentCategory
-    );
   }
 
   return (
     <div className="my-2">
-      <h2>Our Products:</h2>
-      {products.length ? (
+      <h2>My Jewelry</h2>
+      {jewelryList.length ? (
         <div className="flex-row">
-          {filterProducts().map((product) => (
-            <ProductItem
-              key={product._id}
-              _id={product._id}
-              image={product.image}
-              name={product.name}
-              price={product.price}
-              quantity={product.quantity}
+          {filterJewelryList().map((jewelryItem) => (
+            <JewelryItem
+              key={jewelryItem._id}
+              _id={jewelryItem._id}
+              jewelryName={jewelryItem.jewelryName}
+              description={jewelryItem.description}
+              jewelryPrice={jewelryItem.jewelryPrice}
+              assessedValue={jewelryItem.assessedValue}
+              jewelryAssessor={jewelryItem.jewelryAssessor}
+              purchasedDate={jewelryItem.purchasedDate}
+              jewelryWarranty={jewelryItem.jewelryWarranty}
+              servicedDate={jewelryItem.servicedDate}
+              jewelryPhoto={jewelryItem.jewelryPhoto}
+              receiptPhoto={jewelryItem.receiptPhoto}
+              createdAt={jewelryItem.createdAt}
             />
           ))}
         </div>
