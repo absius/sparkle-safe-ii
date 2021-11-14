@@ -13,12 +13,19 @@ function AddJewelry(props) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const mutationResponse = await addUser({
+    const mutationResponse = await addJewelry({
       variables: {
-        email: formState.email,
-        password: formState.password,
-        firstName: formState.firstName,
-        lastName: formState.lastName,
+        jewelryName: formState.jewelryName,
+        description: formState.description,
+        jewelryPrice: formState.jewelryPrice,
+        assessedValue: formState.assessedValue,
+        jewelryAssessor: formState.jewelryAssessor,
+        purchasedDate: formState.purchasedDate,
+        jewelryWarranty: formState.jewelryWarranty,
+        serviceDate: formState.serviceDate,
+        jewelryPhoto: formState.jewelryPhoto,
+        receiptPhoto: formState.receiptPhoto,
+        createdAt: formState.createdAt,
       },
     });
     const token = mutationResponse.data.addUser.token;
