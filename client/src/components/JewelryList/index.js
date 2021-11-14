@@ -5,6 +5,7 @@ import { QUERY_JEWELRY_ITEM } from "../../utils/queries";
 import spinner from "../../assets/spinner.gif";
 
 function JewelryList() {
+  //   console.log("trying to run JewelryList function from JewelryList/index.js");
   const { loading, data } = useQuery(QUERY_JEWELRY_ITEM);
 
   const jewelryList = data?.jewelryList || [];
@@ -37,6 +38,7 @@ function JewelryList() {
           ) : (
             <h3>You haven't added any jewelry yet!</h3>
           )}
+
           {loading ? <img src={spinner} alt="loading" /> : null}
         </div>
       );

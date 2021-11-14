@@ -32,14 +32,17 @@ function MyJewelry() {
                 </h3>
                 <div className="flex-row">
                   {jewelryList.jewelryItem.map(
-                    ({ _id, image, name, price }, index) => (
+                    ({ _id, jewelryName }, index) => (
                       <div key={index} className="card px-1 py-1">
-                        <Link to={`/products/${_id}`}>
-                          <img alt={name} src={`/images/${image}`} />
-                          <p>{name}</p>
+                        <Link to={`/jewelryList/${_id}`}>
+                          <img
+                            alt={jewelryName}
+                            src={`/images/${jewelryItem.jewelryPhoto}`}
+                          />
+                          <p>{jewelryName}</p>
                         </Link>
                         <div>
-                          <span>${price}</span>
+                          <span>${jewelryItem.jewelryPrice}</span>
                         </div>
                       </div>
                     )
