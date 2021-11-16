@@ -1,49 +1,79 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
-import JewelryItem from "../JewelryItem";
-import { QUERY_JEWELRY_ITEM } from "../../utils/queries";
-import spinner from "../../assets/spinner.gif";
+import React from 'react';
+import { useQuery } from '@apollo/client';
+import auth from '../../utils/auth';
+import { QUERY_USER } from "../../utils/queries";
 
-function JewelryList() {
-  //   console.log("trying to run JewelryList function from JewelryList/index.js");
-  const { loading, data } = useQuery(QUERY_JEWELRY_ITEM);
+const JewelryList = () => {
+  
+  const { loading, data } = useQuery(QUERY_USER);
+console.log(data)
+  const userData = data?.me || {};
 
-  const jewelryList = data?.jewelryList || [];
+  const userDataLength = Object.keys(userData).length;
 
-  function filterJewelryList() {
-    if (jewelryList.length) {
-      return (
-        <div className="my-2">
-          <h2>My Jewelry</h2>
-          {jewelryList.length ? (
-            <div className="flex-row">
-              {filterJewelryList().map((jewelryItem) => (
-                <JewelryItem
-                  key={jewelryItem._id}
-                  _id={jewelryItem._id}
-                  jewelryName={jewelryItem.jewelryName}
-                  description={jewelryItem.description}
-                  jewelryPrice={jewelryItem.jewelryPrice}
-                  assessedValue={jewelryItem.assessedValue}
-                  jewelryAssessor={jewelryItem.jewelryAssessor}
-                  purchasedDate={jewelryItem.purchasedDate}
-                  jewelryWarranty={jewelryItem.jewelryWarranty}
-                  servicedDate={jewelryItem.servicedDate}
-                  jewelryPhoto={jewelryItem.jewelryPhoto}
-                  receiptPhoto={jewelryItem.receiptPhoto}
-                  createdAt={jewelryItem.createdAt}
-                />
-              ))}
-            </div>
-          ) : (
-            <h3>You haven't added any jewelry yet!</h3>
-          )}
-
-          {loading ? <img src={spinner} alt="loading" /> : null}
-        </div>
-      );
-    }
+  if (!userDataLength) {
+    return <h2>LOADING...</h2>;
   }
-}
+
+
+  return (
+    <>
+    
+      <div fluid className='text-light bg-dark'>
+      </div>
+      <div>
+        <h2>
+          {userData.jewelryList.length
+            ? `Viewing saved jewelry`
+            : 'You have no saved jewelry!'}
+        </h2>
+        <div>
+        <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Assessed Value</th>
+                <th>Assessor</th>
+                <th>Purchase Date</th>
+                <th>Warranty Expiration Date</th>
+                <th>Last Service Date</th>
+                <th>Jewelry Photo</th>
+                <th>Receipt Photo</th>
+                <th>Created Date</th>
+        </tr>
+        {userData.jewelryList.map((jewelry) => {
+            return (
+             
+            <tr key={jewelry.jewelryName}>
+                <td>
+                {jewelry.jewelryName}
+                </td>
+                <td>
+                {jewelry.description}
+                </td>
+                <td>{jewelry.jewelryPrice}</td>
+                <td>{jewelry.assessedValue}</td>
+                <td>{jewelry.jewelryAssessor}</td>
+                <td>{jewelry.purchasedDate}</td>
+                <td>{jewelry.jewelryWarranty}</td>
+                <td>{jewelry.serviceDate}</td>
+                <td>{jewelry.jewelryPhoto}</td>
+                <td>{jewelry.receiptPhoto}</td>
+                <td>{jewelry.createdAt}</td>
+
+            </tr>
+
+
+            );
+          })}
+    </table>
+     
+    
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default JewelryList;

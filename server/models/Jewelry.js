@@ -1,8 +1,8 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const jewelryItemSchema = new Schema({
+const jewelrySchema = new Schema({
   jewelryName: {
     type: String,
     required: true,
@@ -36,11 +36,11 @@ const jewelryItemSchema = new Schema({
   serviceDate: {
     type: Date,
   },
-  jewelryPhoto: {
+  jewelryPhoto:  {
     data: Buffer,
     contentType: String,
   },
-  receiptPhoto: {
+  receiptPhoto:  {
     data: Buffer,
     contentType: String,
   },
@@ -50,6 +50,5 @@ const jewelryItemSchema = new Schema({
   },
 });
 
-const JewelryItem = mongoose.model("JewelryItem", jewelryItemSchema);
 
-module.exports = JewelryItem;
+module.exports = jewelrySchema;
