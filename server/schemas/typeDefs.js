@@ -18,18 +18,12 @@ const typeDefs = gql`
    
   }
 
-  type Order {
-    _id: ID
-    purchaseDate: String
-    jewelryList: [Jewelry]
-  }
-
   type User {
     _id: ID
     firstName: String
     lastName: String
     email: String
-    orders: [Order]
+    jewelryList: [Jewelry]
   }
 
   type Auth {
@@ -38,16 +32,12 @@ const typeDefs = gql`
   }
 
   type Query {
- 
-    jewelryList(_id:ID!, name: String): [Jewelry]
-    jewelry(_id: ID!): Jewelry
-    user: User
-    order(_id: ID!): Order
+    me: User
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
+
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     updateJewelry(_id: ID!, quantity: Int!): Jewelry
     login(email: String!, password: String!): Auth
