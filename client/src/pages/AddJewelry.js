@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import mutations from "../utils/mutations";
@@ -6,6 +6,8 @@ import jewelryItem from "../components/JewelryItem";
 import jewelryList from "../components/JewelryList";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
+import { ADD_JEWELRY } from "../utils/mutations";
+import Auth from "../utils/auth";
 
 function AddJewelry(props) {
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -28,7 +30,7 @@ function AddJewelry(props) {
         createdAt: formState.createdAt,
       },
     });
-    const token = mutationResponse.data.addUser.token;
+    const token = mutationResponse.data.addJewelry.token;
     Auth.login(token);
   };
 
@@ -47,42 +49,82 @@ function AddJewelry(props) {
       <h2>Signup</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
-          <label htmlFor="firstName">First Name:</label>
+          <label htmlFor="jewelryName">Jewelry Name:</label>
           <input
-            placeholder="First"
-            name="firstName"
-            type="firstName"
-            id="firstName"
+            placeholder="jewelry"
+            name="jewelryName"
+            type="text"
+            id="jewelryName"
             onChange={handleChange}
           />
         </div>
         <div className="flex-row space-between my-2">
-          <label htmlFor="lastName">Last Name:</label>
+          <label htmlFor="description">Description:</label>
           <input
-            placeholder="Last"
-            name="lastName"
-            type="lastName"
-            id="lastName"
+            placeholder="description"
+            name="description"
+            type="text"
+            id="description"
             onChange={handleChange}
           />
         </div>
         <div className="flex-row space-between my-2">
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="jewelryPrice">Price:</label>
           <input
-            placeholder="youremail@test.com"
-            name="email"
-            type="email"
-            id="email"
+            placeholder="price"
+            name="jewelryPrice"
+            type="text"
+            id="jewelryPrice"
             onChange={handleChange}
           />
         </div>
         <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">Password:</label>
+          <label htmlFor="assessedValue">Assessed Value:</label>
           <input
-            placeholder="******"
-            name="password"
-            type="password"
-            id="pwd"
+            placeholder="assessed value"
+            name="assessedValue"
+            type="text"
+            id="assessedValue"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="jewelryAssessor">Assessor Name:</label>
+          <input
+            placeholder="Assessor"
+            name="jewelryAssessor"
+            type="text"
+            id="jewelryAssessor"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="purchasedDate">Date Purchased:</label>
+          <input
+            placeholder="date"
+            name="purchasedDate"
+            type="text"
+            id="purchasedDate"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="jewelryPhoto">Jewelry Photo:</label>
+          <input
+            placeholder="upload"
+            name="jewelryPhoto"
+            type="file"
+            id="jewelryPhoto"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="receiptPhoto">Receipt Photo:</label>
+          <input
+            placeholder="upload"
+            name="receiptPhoto"
+            type="file"
+            id="receiptPhoto"
             onChange={handleChange}
           />
         </div>
