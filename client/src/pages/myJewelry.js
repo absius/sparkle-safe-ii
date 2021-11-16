@@ -15,6 +15,7 @@ function MyJewelry() {
 
   return (
     <>
+      <div>MY JEWELRY STUFF GOES HERE</div>
       <div className="container my-1">
         {user ? (
           <>
