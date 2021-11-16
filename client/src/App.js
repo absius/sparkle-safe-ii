@@ -14,8 +14,10 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Nav from "./components/Nav";
+
 import MyJewelry from "./pages/MyJewelry";
 import AddJewelry from "./pages/AddJewelry";
+
 
 const httpLink = createHttpLink({
   uri: "/graphql",
