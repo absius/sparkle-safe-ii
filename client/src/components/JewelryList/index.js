@@ -33,6 +33,14 @@ console.log(data)
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
+            <th>Assessed Value</th>
+                <th>Assessor</th>
+                <th>Purchase Date</th>
+                <th>Warranty Expiration Date</th>
+                <th>Last Service Date</th>
+                <th>Jewelry Photo</th>
+                <th>Receipt Photo</th>
+                <th>Created Date</th>
         </tr>
         {userData.jewelryList.map((jewelry) => {
             return (
@@ -44,7 +52,16 @@ console.log(data)
                 <td>
                 {jewelry.description}
                 </td>
-                <td>{jewelry.price}</td>
+                <td>{jewelry.jewelryPrice}</td>
+                <td>{jewelry.assessedValue}</td>
+                <td>{jewelry.jewelryAssessor}</td>
+                <td>{jewelry.purchasedDate}</td>
+                <td>{jewelry.jewelryWarranty}</td>
+                <td>{jewelry.serviceDate}</td>
+                <td>{jewelry.jewelryPhoto}</td>
+                <td>{jewelry.receiptPhoto}</td>
+                <td>{jewelry.createdAt}</td>
+
             </tr>
 
 
