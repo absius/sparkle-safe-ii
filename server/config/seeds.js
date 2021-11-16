@@ -1,8 +1,17 @@
 const db = require("./connection");
-const { User, Jewelry } = require("../models");
+const { User } = require("../models");
 
 db.once("open", async () => {
-  const jewelryList = await Jewelry.insertMany([
+
+
+  await User.deleteMany();
+
+  await User.create({
+    firstName: "Patrick",
+    lastName: "Abernathy",
+    email: "pat.abs@gmail.com",
+    password: "testpass",
+    myJewelry: [
     {
       jewelryName: "Necklace",
       description: "item 1",
@@ -27,22 +36,7 @@ db.once("open", async () => {
       jewelryPhoto: "",
       receiptPhoto: "",
     },
-  ]);
-
-  console.log("jewelry seeded");
-
-  await User.deleteMany();
-
-  await User.create({
-    firstName: "Patrick",
-    lastName: "Abernathy",
-    email: "pat.abs@gmail.com",
-    password: "testpass",
-    myJewelry: [
-      {
-        jewelryList: [jewelryList[0]._id, jewelryList[1]._id],
-      },
-    ],
+  ],
   });
 
   console.log("users seeded");
