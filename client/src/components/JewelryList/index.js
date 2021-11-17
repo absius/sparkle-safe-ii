@@ -1,21 +1,25 @@
+
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import auth from '../../utils/auth';
 
 import { REMOVE_JEWELRY } from "../../utils/mutations";
+
 import { QUERY_USER } from "../../utils/queries";
 
 const JewelryList = () => {
-  
   const { loading, data } = useQuery(QUERY_USER);
+
   
   const [removeJewelry, { error }] = useMutation(REMOVE_JEWELRY);
+
   const userData = data?.me || {};
 
   const userDataLength = Object.keys(userData).length;
 
   if (!userDataLength) {
     return <h2>LOADING...</h2>;
+
   }
 
   const handleDeleteJewelry = async (jewelryId) => {
@@ -59,6 +63,7 @@ const JewelryList = () => {
             <th>Description</th>
             <th>Price</th>
             <th>Assessed Value</th>
+
                 <th>Assessor</th>
                 <th>Purchase Date</th>
                 <th>Warranty Expiration Date</th>
@@ -66,6 +71,7 @@ const JewelryList = () => {
                 <th>Jewelry Photo</th>
                 <th>Receipt Photo</th>
                 <th>Created Date</th>
+
 <th>Delete</th>
 </tr>
         </thead>
@@ -101,10 +107,11 @@ const JewelryList = () => {
     </table>
      
     
+
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 };
 
 export default JewelryList;
