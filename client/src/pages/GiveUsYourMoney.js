@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { PaymentElement } from "@stripe/react-stripe-js";
 
-function GiveUsYourMoney() {
+const GiveUsYourMoney = () => {
   return (
-    <>
-      <div>Money Stuff goes here</div>;
-    </>
+    <form>
+      <PaymentElement />
+      <button>Submit</button>
+    </form>
   );
-}
+};
 
 export default GiveUsYourMoney;

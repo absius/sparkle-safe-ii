@@ -23,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/absius/sparkle-safe-ii/issues"
   },
-  "homepage": "https://github.com/absius/sparkle-safe-ii#readme"
+  "homepage": "https://github.com/absius/sparkle-safe-ii#readme",
+  "dependencies": {
+    "@stripe/react-stripe-js": "^1.6.0",
+    "@stripe/stripe-js": "^1.21.1"
+  }
 }
