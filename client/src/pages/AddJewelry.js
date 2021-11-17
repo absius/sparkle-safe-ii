@@ -19,9 +19,9 @@ function AddJewelry(props) {
     jewelryPrice: "",
     assessedValue: "",
     jewelryAssessor: "",
-    purchasedDate: "",
+    purchasedDate: Date,
     jewelryWarranty: "",
-    serviceDate: "",
+    serviceDate: Date,
     jewelryPhoto: XMLHttpRequestUpload,
     receiptPhoto: XMLHttpRequestUpload,
   });
