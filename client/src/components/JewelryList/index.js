@@ -45,7 +45,7 @@ const JewelryList = () => {
   }
 
   return (
-    <>
+    <div>
     
       <div className='text-light bg-dark'>
       </div>
@@ -55,6 +55,7 @@ const JewelryList = () => {
             ? `Viewing saved jewelry`
             : 'You have no saved jewelry!'}
         </h2>
+        </div>
         <div>
         <table>
         <thead>
@@ -109,9 +110,9 @@ const JewelryList = () => {
     
 
         </div>
-      </>
+      </div>
     );
   }
-};
+
 
 export default JewelryList;
