@@ -35,22 +35,25 @@ export const QUERY_JEWELRY_LIST = gql`
 `;
 
 export const QUERY_USER = gql`
-  {
-    user {
-      firstName
-      lastName
-      jewelry {
-        _id
-        jewelryName
-        description
-        jewelryPrice
-        assessedValue
-        jewelryAssessor
-        purchaseDate
-        jewelryWarranty
-        receiptPhoto
-        createdAt
-      }
+{
+  me {
+    _id
+    firstName
+    lastName
+    email
+    jewelryList {
+      # _id
+      jewelryName
+      description
+      jewelryPrice
+      assessedValue
+      jewelryAssessor
+      purchasedDate
+      jewelryWarranty
+      serviceDate
+    
+      
     }
   }
+}
 `;

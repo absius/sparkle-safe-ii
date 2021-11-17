@@ -15,7 +15,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Nav from "./components/Nav";
 
-import MyJewelry from "./pages/myJewelry";
+import MyJewelry from "./pages/MyJewelry";
 import AddJewelry from "./pages/AddJewelry";
 import GiveUsYourMoney from "./pages/GiveUsYourMoney";
 

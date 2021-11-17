@@ -203,6 +203,14 @@ input:focus {
   color: var(--error);
 }
 
+
+table,
+th,
+td {
+    border: 1px solid black;
+    margin: auto;
+}
+
 @media screen and (max-width: 768px) {
   .card {
     width: 100%;
