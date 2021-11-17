@@ -1,12 +1,15 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import auth from '../../utils/auth';
+
+import { REMOVE_JEWELRY } from "../../utils/mutations";
 import { QUERY_USER } from "../../utils/queries";
 
 const JewelryList = () => {
   
   const { loading, data } = useQuery(QUERY_USER);
-console.log(data)
+  
+  const [removeJewelry, { error }] = useMutation(REMOVE_JEWELRY);
   const userData = data?.me || {};
 
   const userDataLength = Object.keys(userData).length;
@@ -15,11 +18,32 @@ console.log(data)
     return <h2>LOADING...</h2>;
   }
 
+  const handleDeleteJewelry = async (jewelryId) => {
+    const token = auth.loggedIn() ? auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const { data } = await removeJewelry({
+        variables: { jewelryId },
+      });
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // if data isn't here yet, say so
+  if (!userDataLength) {
+    return <h2>LOADING...</h2>;
+  }
 
   return (
     <>
     
-      <div fluid className='text-light bg-dark'>
+      <div className='text-light bg-dark'>
       </div>
       <div>
         <h2>
@@ -29,7 +53,8 @@ console.log(data)
         </h2>
         <div>
         <table>
-        <tr>
+        <thead>
+          <tr>
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
@@ -41,13 +66,16 @@ console.log(data)
                 <th>Jewelry Photo</th>
                 <th>Receipt Photo</th>
                 <th>Created Date</th>
-        </tr>
+<th>Delete</th>
+</tr>
+        </thead>
+        <tbody>
         {userData.jewelryList.map((jewelry) => {
             return (
              
             <tr key={jewelry.jewelryName}>
                 <td>
-                {jewelry.jewelryName}
+                {jewelry._id}
                 </td>
                 <td>
                 {jewelry.description}
@@ -61,12 +89,15 @@ console.log(data)
                 <td>{jewelry.jewelryPhoto}</td>
                 <td>{jewelry.receiptPhoto}</td>
                 <td>{jewelry.createdAt}</td>
-
+                <td>  <button className='btn-block btn-danger' onClick={() => handleDeleteJewelry(jewelry._id)}>
+                    Delete this Item!
+                  </button></td>
             </tr>
 
 
             );
           })}
+          </tbody>
     </table>
      
     
