@@ -42,7 +42,7 @@ export const QUERY_USER = gql`
     lastName
     email
     jewelryList {
-      # _id
+      _id
       jewelryName
       description
       jewelryPrice

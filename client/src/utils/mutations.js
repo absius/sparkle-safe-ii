@@ -11,21 +11,26 @@ export const LOGIN = gql`
   }
 `;
 
-export const ADD_ORDER = gql`
-  mutation addOrder($products: [ID]!) {
-    addOrder(products: $products) {
-      purchaseDate
-      products {
+export const REMOVE_JEWELRY = gql`
+  mutation removeJewelry($jewelryId: ID!) {
+    removeJewelry(jewelryId: $jewelryId) {
+      _id
+      firstName
+      lastName
+      email
+      jewelryList {
         _id
-        name
+        jewelryName
         description
-        price
-        quantity
-        category {
-          name
-        }
+        jewelryPrice
+        assessedValue
+        jewelryAssessor
+        purchasedDate
+        jewelryWarranty
+        serviceDate
+      
       }
-    }
+      }
   }
 `;
 
