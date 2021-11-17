@@ -14,7 +14,7 @@ function Nav() {
             <Link to="/addJewelry">Add Jewelry</Link>
           </li>
           <li className="mx-1">
-            <Link to="/givUsYourMoney">Give Us Your Money</Link>
+            <Link to="/giveUsYourMoney">Give Us Your Money</Link>
           </li>
           <li className="mx-1">
             {/* this is not using the Link component to logout or user and then refresh the application to the start */}

@@ -8,9 +8,23 @@ import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
 import { ADD_JEWELRY } from "../utils/mutations";
 import Auth from "../utils/auth";
+import Button from "@material-ui/core/Button";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import IconButton from "@material-ui/core/IconButton";
 
 function AddJewelry(props) {
-  const [formState, setFormState] = useState({ email: "", password: "" });
+  const [formState, setFormState] = useState({
+    jewelryName: "",
+    description: "",
+    jewelryPrice: "",
+    assessedValue: "",
+    jewelryAssessor: "",
+    purchasedDate: "",
+    jewelryWarranty: "",
+    serviceDate: "",
+    jewelryPhoto: XMLHttpRequestUpload,
+    receiptPhoto: XMLHttpRequestUpload,
+  });
   const [addJewelry] = useMutation(ADD_JEWELRY);
 
   const handleFormSubmit = async (event) => {
@@ -27,12 +41,23 @@ function AddJewelry(props) {
         serviceDate: formState.serviceDate,
         jewelryPhoto: formState.jewelryPhoto,
         receiptPhoto: formState.receiptPhoto,
-        createdAt: formState.createdAt,
       },
     });
     const token = mutationResponse.data.addJewelry.token;
     Auth.login(token);
   };
+
+  // const JewelryImageUploader = document.getElementById("jewelryPhoto");
+  // JewelryImageUploader.addEventListener("change", (event) => {
+  //   const files = event.target.files;
+  //   console.log("files", files);
+  // });
+
+  // const ReceiptImageUploader = document.getElementById("receiptPhoto");
+  // ReceiptImageUploader.addEventListener("change", (event) => {
+  //   const files = event.target.files;
+  //   console.log("files", files);
+  // });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -46,7 +71,7 @@ function AddJewelry(props) {
     <div className="container my-1">
       <Link to="/login">← Go to Login</Link>
 
-      <h2>Signup</h2>
+      <h2>Add Jewelry</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
           <label htmlFor="jewelryName">Jewelry Name:</label>
@@ -111,22 +136,62 @@ function AddJewelry(props) {
         <div className="flex-row space-between my-2">
           <label htmlFor="jewelryPhoto">Jewelry Photo:</label>
           <input
-            placeholder="upload"
-            name="jewelryPhoto"
             type="file"
-            id="jewelryPhoto"
-            onChange={handleChange}
+            accept="image/*"
+            style={{ display: "none" }}
+            id="contained-button-file"
           />
+          <label htmlFor="contained-button-file">
+            <Button variant="contained" color="primary" component="span">
+              Upload
+            </Button>
+          </label>
+          <h3> OR </h3>
+          <input
+            accept="image/*"
+            id="icon-button-file"
+            type="file"
+            style={{ display: "none" }}
+          />
+          <label htmlFor="icon-button-file">
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="span"
+            >
+              <PhotoCamera />
+            </IconButton>
+          </label>
         </div>
         <div className="flex-row space-between my-2">
           <label htmlFor="receiptPhoto">Receipt Photo:</label>
           <input
-            placeholder="upload"
-            name="receiptPhoto"
             type="file"
-            id="receiptPhoto"
-            onChange={handleChange}
+            accept="image/*"
+            style={{ display: "none" }}
+            id="contained-button-file"
           />
+          <label htmlFor="contained-button-file">
+            <Button variant="contained" color="primary" component="span">
+              Upload
+            </Button>
+          </label>
+          <h3> OR </h3>
+          <input
+            accept="image/*"
+            id="icon-button-file"
+            type="file"
+            style={{ display: "none" }}
+          />
+          <label htmlFor="icon-button-file">
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="span"
+            >
+              <PhotoCamera />
+            </IconButton>
+          </label>
         </div>
         <div className="flex-row flex-end">
           <button type="submit">Submit</button>
