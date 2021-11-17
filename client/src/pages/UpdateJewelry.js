@@ -43,9 +43,8 @@ function AddJewelry(props) {
          input: jewelryData 
       },
     });
-    window.location.reload();
-   // const token = mutationResponse.data.saveJewelry.token;
-   // Auth.login(token);
+    const token = mutationResponse.data.saveJewelry.token;
+    Auth.login(token);
   };
 
   // const JewelryImageUploader = document.getElementById("jewelryPhoto");

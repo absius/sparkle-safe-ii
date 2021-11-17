@@ -74,6 +74,7 @@ const JewelryList = () => {
                 <th>Created Date</th>
 
 <th>Delete</th>
+<th>Update</th>
 </tr>
         </thead>
         <tbody>
@@ -96,8 +97,11 @@ const JewelryList = () => {
                 <td>{jewelry.jewelryPhoto}</td>
                 <td>{jewelry.receiptPhoto}</td>
                 <td>{jewelry.createdAt}</td>
-                <td>  <button className='btn-block btn-danger' onClick={() => handleDeleteJewelry(jewelry._id)}>
+                <td>  <button style={{backgroundColor: "red"}} onClick={() => handleDeleteJewelry(jewelry._id)}>
                     Delete this Item!
+                  </button></td>
+                  <td>  <button style={{backgroundColor: "blue"}} onClick={() => handleDeleteJewelry(jewelry._id)}>
+                    Update this Item!
                   </button></td>
             </tr>
 

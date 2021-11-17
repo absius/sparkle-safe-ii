@@ -29,11 +29,7 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    updateJewelry: async (parent, { _id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
 
-      return await Jewelry.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
-    },
     saveJewelry: async (parent, args, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
@@ -45,6 +41,18 @@ const resolvers = {
         return updatedUser;
       }
       throw new AuthenticationError("You need to be logged in!");
+    },
+    updateJewelry: async (parent, args, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { jewelryList: { _id: args.input.jewelryId } } },
+          { $addToSet: { jewelryList: args.input } },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError("You need to be logged in.");
     },
     removeJewelry: async (parent, args, context) => {
       if (context.user) {
