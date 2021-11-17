@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import mutations from "../utils/mutations";
-import jewelryItem from "../components/JewelryItem";
-import jewelryList from "../components/JewelryList";
-import { useQuery } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
-import { ADD_JEWELRY } from "../utils/mutations";
+import { SAVE_JEWELRY } from "../utils/mutations";
 import Auth from "../utils/auth";
 import Button from "@material-ui/core/Button";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import IconButton from "@material-ui/core/IconButton";
+
 
 function AddJewelry(props) {
   const [formState, setFormState] = useState({
@@ -19,31 +15,35 @@ function AddJewelry(props) {
     jewelryPrice: "",
     assessedValue: "",
     jewelryAssessor: "",
-    purchasedDate: Date,
+    purchasedDate: "",
     jewelryWarranty: "",
-    serviceDate: Date,
-    jewelryPhoto: XMLHttpRequestUpload,
-    receiptPhoto: XMLHttpRequestUpload,
+    serviceDate: "",
+    jewelryPhoto: "",
+    receiptPhoto: "",
   });
-  const [addJewelry] = useMutation(ADD_JEWELRY);
+  const [saveJewelry] = useMutation(SAVE_JEWELRY);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const mutationResponse = await addJewelry({
+    const jewelryData =  ({
+      jewelryName: formState.jewelryName,
+      description: formState.description,
+      jewelryPrice: formState.jewelryPrice,
+      assessedValue: formState.assessedValue,
+      jewelryAssessor: formState.jewelryAssessor,
+      purchasedDate: formState.purchasedDate,
+      jewelryWarranty: formState.jewelryWarranty,
+      serviceDate: formState.serviceDate,
+      jewelryPhoto: formState.jewelryPhoto,
+      receiptPhoto: formState.receiptPhoto,
+    });
+    console.log(jewelryData);
+    const mutationResponse = await saveJewelry({
       variables: {
-        jewelryName: formState.jewelryName,
-        description: formState.description,
-        jewelryPrice: formState.jewelryPrice,
-        assessedValue: formState.assessedValue,
-        jewelryAssessor: formState.jewelryAssessor,
-        purchasedDate: formState.purchasedDate,
-        jewelryWarranty: formState.jewelryWarranty,
-        serviceDate: formState.serviceDate,
-        jewelryPhoto: formState.jewelryPhoto,
-        receiptPhoto: formState.receiptPhoto,
+         input: jewelryData 
       },
     });
-    const token = mutationResponse.data.addJewelry.token;
+    const token = mutationResponse.data.saveJewelry.token;
     Auth.login(token);
   };
 

@@ -80,9 +80,9 @@ const JewelryList = () => {
         {userData.jewelryList.map((jewelry) => {
             return (
              
-            <tr key={jewelry.jewelryName}>
+            <tr key={jewelry._id}>
                 <td>
-                {jewelry._id}
+                {jewelry.jewelryName}
                 </td>
                 <td>
                 {jewelry.description}

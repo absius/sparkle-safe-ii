@@ -34,10 +34,23 @@ const typeDefs = gql`
   type Query {
     me: User
   }
+  input savedJewelry {
+    jewelryName: String
+    description: String
+    jewelryPrice: String
+    assessedValue: String
+    jewelryAssessor: String
+    purchasedDate: String
+    jewelryWarranty: String
+    serviceDate: String
+    jewelryPhoto: String
+    receiptPhoto: String
+  }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     removeJewelry(jewelryId: ID!): User
+    saveJewelry(input: savedJewelry!): User
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     updateJewelry(_id: ID!, quantity: Int!): Jewelry
     login(email: String!, password: String!): Auth

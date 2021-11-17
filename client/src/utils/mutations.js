@@ -10,6 +10,28 @@ export const LOGIN = gql`
     }
   }
 `;
+export const SAVE_JEWELRY = gql`
+  mutation saveJewelry($input: savedJewelry!) {
+    saveJewelry(input: $input) {
+      _id
+      firstName
+      lastName
+      email
+      jewelryList {
+        
+        jewelryName
+        description
+        jewelryPrice
+        assessedValue
+        jewelryAssessor
+        purchasedDate
+        jewelryWarranty
+        serviceDate
+      
+      }
+    }
+  }
+`;
 
 export const REMOVE_JEWELRY = gql`
   mutation removeJewelry($jewelryId: ID!) {
