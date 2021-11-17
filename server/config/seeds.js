@@ -11,7 +11,7 @@ db.once("open", async () => {
     lastName: "Abernathy",
     email: "pat.abs@gmail.com",
     password: "testpass",
-    myJewelry: [
+    jewelryList: [
     {
       jewelryName: "Necklace",
       description: "item 1",

@@ -34,6 +34,17 @@ const resolvers = {
 
       return await Jewelry.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
     },
+    removeJewelry: async (parent, args, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { jewelryList: { _id: args.jewelryId } } },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError("You need to be logged in.");
+    },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
