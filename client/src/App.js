@@ -9,12 +9,10 @@ import {
 import { setContext } from "@apollo/client/link/context";
 
 import Home from "./pages/Home";
-// import Detail from './pages/Detail';
-// import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Nav from "./components/Nav";
-
+import Checkout from "./pages/Checkout";
 import MyJewelry from "./pages/MyJewelry";
 import AddJewelry from "./pages/AddJewelry";
 import GiveUsYourMoney from "./pages/GiveUsYourMoney";
@@ -51,8 +49,7 @@ function App() {
             <Route exact path="/myJewelry" component={MyJewelry} />
             <Route exact path="/addJewelry" component={AddJewelry} />
             <Route exact path="/giveUsYourMoney" component={GiveUsYourMoney} />
-            {/* <Route exact path="/products/:id" component={Detail} /> */}
-            {/* <Route component={NoMatch} /> */}
+            <Route exact path="/checkout" component={Checkout} />
           </Switch>
         </div>
       </Router>

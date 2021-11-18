@@ -7,15 +7,18 @@
     "@apollo/client": "^3.3.7",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
+    "@stripe/stripe-js": "^1.21.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "graphql": "^14.6.0",
     "jwt-decode": "^2.2.0",
+    "next": "^12.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "stripe": "^8.190.0"
   },
   "scripts": {
     "start": "react-scripts start",

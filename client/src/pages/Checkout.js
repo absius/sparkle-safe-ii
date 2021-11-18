@@ -3,11 +3,12 @@ import "./App.css";
 
 const ProductDisplay = () => (
   <section>
-    <div className="description">
-      <h3>Like our app? Help us out.</h3>
-      <h5>$20.00</h5>
+    <div className="product">
+      <div className="description">
+        <h3>Like our app? Help us out.</h3>
+        <h5>$20.00</h5>
+      </div>
     </div>
-
     <form action="/create-checkout-session" method="POST">
       <button type="submit">Checkout</button>
     </form>
@@ -20,7 +21,7 @@ const Message = ({ message }) => (
   </section>
 );
 
-export default function ConfirmCheckout() {
+export default function Checkout() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
