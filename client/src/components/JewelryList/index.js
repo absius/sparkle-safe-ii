@@ -10,7 +10,7 @@ import { QUERY_USER } from "../../utils/queries";
 const JewelryList = () => {
   const { loading, data } = useQuery(QUERY_USER);
 
-  
+  console.log(data);
   const [removeJewelry, { error }] = useMutation(REMOVE_JEWELRY);
 
   const userData = data?.me || {};
@@ -70,19 +70,20 @@ const JewelryList = () => {
                 <th>Warranty Expiration Date</th>
                 <th>Last Service Date</th>
                 <th>Jewelry Photo</th>
-                <th>Receipt Photo</th>
-                <th>Created Date</th>
+              
+               
 
 <th>Delete</th>
+
 </tr>
         </thead>
         <tbody>
         {userData.jewelryList.map((jewelry) => {
             return (
              
-            <tr key={jewelry.jewelryName}>
+            <tr key={jewelry._id}>
                 <td>
-                {jewelry._id}
+                {jewelry.jewelryName}
                 </td>
                 <td>
                 {jewelry.description}
@@ -93,12 +94,13 @@ const JewelryList = () => {
                 <td>{jewelry.purchasedDate}</td>
                 <td>{jewelry.jewelryWarranty}</td>
                 <td>{jewelry.serviceDate}</td>
-                <td>{jewelry.jewelryPhoto}</td>
-                <td>{jewelry.receiptPhoto}</td>
-                <td>{jewelry.createdAt}</td>
-                <td>  <button className='btn-block btn-danger' onClick={() => handleDeleteJewelry(jewelry._id)}>
+                <td><img width='200' height='200' src={jewelry.jewelryPhoto}/></td>
+               
+                
+                <td>  <button style={{backgroundColor: "red"}} onClick={() => handleDeleteJewelry(jewelry._id)}>
                     Delete this Item!
                   </button></td>
+
             </tr>
 
 

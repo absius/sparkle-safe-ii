@@ -1,3 +1,4 @@
+//fixed error in file
 import React, { useState } from "react";
 import JewelryList from "../components/JewelryList";
 
