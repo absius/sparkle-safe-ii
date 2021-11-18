@@ -1,5 +1,6 @@
 # sparkle-safe-ii
 
+
 # Purpose
 
 To create a website that keeps an archive of your jewelry for insurance purposes. You are able to input various information on the site to help keep track
