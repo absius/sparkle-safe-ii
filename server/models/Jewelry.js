@@ -41,8 +41,7 @@ const jewelrySchema = new Schema({
     
     },
   receiptPhoto:  {
-    data: Buffer,
-    contentType: String,
+    type: String,
   },
   createdAt: {
     type: Date,

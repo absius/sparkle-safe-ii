@@ -52,7 +52,8 @@ export const QUERY_USER = gql`
       jewelryWarranty
       serviceDate
       jewelryPhoto
-      
+      receiptPhoto
+     
     }
   }
 }

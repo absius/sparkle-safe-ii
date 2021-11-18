@@ -70,8 +70,8 @@ const JewelryList = () => {
                 <th>Warranty Expiration Date</th>
                 <th>Last Service Date</th>
                 <th>Jewelry Photo</th>
-                <th>Receipt Photo</th>
-                <th>Created Date</th>
+              
+               
 
 <th>Delete</th>
 
@@ -95,8 +95,8 @@ const JewelryList = () => {
                 <td>{jewelry.jewelryWarranty}</td>
                 <td>{jewelry.serviceDate}</td>
                 <td><img width='200' height='200' src={jewelry.jewelryPhoto}/></td>
-                <td></td>
-                <td>{jewelry.createdAt}</td>
+               
+                
                 <td>  <button style={{backgroundColor: "red"}} onClick={() => handleDeleteJewelry(jewelry._id)}>
                     Delete this Item!
                   </button></td>

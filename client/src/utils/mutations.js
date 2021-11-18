@@ -28,6 +28,8 @@ export const SAVE_JEWELRY = gql`
         jewelryWarranty
         serviceDate
         jewelryPhoto
+        receiptPhoto
+        
       }
     }
   }
@@ -50,7 +52,8 @@ export const REMOVE_JEWELRY = gql`
         purchasedDate
         jewelryWarranty
         serviceDate
-      
+        jewelryPhoto
+        receiptPhoto
       }
       }
   }
