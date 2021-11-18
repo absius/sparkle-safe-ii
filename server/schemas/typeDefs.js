@@ -18,6 +18,11 @@ const typeDefs = gql`
    
   }
 
+  type Image {
+    base64: String
+    imageFormat: String
+  }
+
   type User {
     _id: ID
     firstName: String
@@ -45,6 +50,11 @@ const typeDefs = gql`
     serviceDate: String
     jewelryPhoto: String
     receiptPhoto: String
+  }
+
+  input savedImage {
+    base64: String
+    imageFormat: String
   }
 
   input updatedJewelry {

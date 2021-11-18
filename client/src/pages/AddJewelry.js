@@ -23,6 +23,50 @@ function AddJewelry(props) {
   });
   const [saveJewelry] = useMutation(SAVE_JEWELRY);
 
+ const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file)
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      }
+      fileReader.onerror = (error) => {
+        reject(error);
+      }
+    })
+  };
+
+  const handleChangeImage = async(evt) => {
+  
+      const file = evt.target.files[0]
+      const base64 = await convertBase64(file)
+      var img = new Image();
+      img.src = base64;
+      
+      var canvas = document.createElement('canvas');
+      var MAX_WIDTH = 200;
+      var MAX_HEIGHT = 200;
+      var width = 200;
+      var height = 200;
+     
+      canvas.width = width;
+      canvas.height = height;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+      
+      const dataUrl = canvas.toDataURL();
+    
+      const imageData = ({
+        base64: dataUrl,
+        imageFormat: "png"
+      })
+      formState.jewelryPhoto = base64;
+      
+    }
+  
+
+
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const jewelryData =  ({
@@ -141,6 +185,8 @@ function AddJewelry(props) {
             accept="image/*"
             style={{ display: "none" }}
             id="contained-button-file"
+            onChange={handleChangeImage}
+            encType="multipart/form-data"
           />
           <label htmlFor="contained-button-file">
             <Button variant="contained" color="primary" component="span">

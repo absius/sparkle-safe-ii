@@ -37,9 +37,9 @@ const jewelrySchema = new Schema({
     type: Date,
   },
   jewelryPhoto:  {
-    data: Buffer,
-    contentType: String,
-  },
+    type: String,
+    
+    },
   receiptPhoto:  {
     data: Buffer,
     contentType: String,
