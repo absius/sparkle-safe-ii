@@ -6,6 +6,11 @@ import { REMOVE_JEWELRY } from "../../utils/mutations";
 
 import { QUERY_USER } from "../../utils/queries";
 
+var date = new Date(dateStr); // dateStr you get from mongodb
+
+var d = date.getDate();
+var m = date.getMonth() + 1;
+
 const JewelryList = () => {
   const { loading, data } = useQuery(QUERY_USER);
 
@@ -71,6 +76,19 @@ const JewelryList = () => {
           </thead>
           <tbody>
             {userData.jewelryList.map((jewelry) => {
+              var purchasedDate = new Date(jewelry.purchasedDate); // dateStr you get from mongodb
+
+              var purchasedDay = purchasedDate.getDate();
+              var purchasedMonth = purchasedDate.getMonth();
+
+              var warrantyDate = new Date(jewelry.warrantyDate);
+              var warrantyDay = warrantyDate.getDate();
+              var warrantyMonth = warrantyDate.getMonth();
+
+              var serviceDate = new Date(jewelry.serviceDate);
+              var serviceDay = serviceDate.getDate();
+              var serviceMonth = serviceDate.getMonth();
+
               return (
                 <tr key={jewelry._id}>
                   <td>{jewelry.jewelryName}</td>
@@ -78,7 +96,7 @@ const JewelryList = () => {
                   <td>{jewelry.jewelryPrice}</td>
                   <td>{jewelry.assessedValue}</td>
                   <td>{jewelry.jewelryAssessor}</td>
-                  <td>{jewelry.purchasedDate}</td>
+                  <td>{purchasedDate}</td>
                   <td>{jewelry.jewelryWarranty}</td>
                   <td>{jewelry.serviceDate}</td>
                   <td>
