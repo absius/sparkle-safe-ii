@@ -1,7 +1,6 @@
-
-import React from 'react';
-import { useQuery, useMutation } from '@apollo/client';
-import auth from '../../utils/auth';
+import React from "react";
+import { useQuery, useMutation } from "@apollo/client";
+import auth from "../../utils/auth";
 
 import { REMOVE_JEWELRY } from "../../utils/mutations";
 
@@ -19,7 +18,6 @@ const JewelryList = () => {
 
   if (!userDataLength) {
     return <h2>LOADING...</h2>;
-
   }
 
   const handleDeleteJewelry = async (jewelryId) => {
@@ -33,7 +31,6 @@ const JewelryList = () => {
       const { data } = await removeJewelry({
         variables: { jewelryId },
       });
-
     } catch (err) {
       console.error(err);
     }
@@ -46,75 +43,65 @@ const JewelryList = () => {
 
   return (
     <div>
-    
-      <div className='text-light bg-dark'>
-      </div>
+      <div className="text-light bg-dark"></div>
       <div>
         <h2>
           {userData.jewelryList.length
             ? `Viewing saved jewelry`
-            : 'You have no saved jewelry!'}
+            : "You have no saved jewelry!"}
         </h2>
-        </div>
-        <div>
-        <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Assessed Value</th>
-
-                <th>Assessor</th>
-                <th>Purchase Date</th>
-                <th>Warranty Expiration Date</th>
-                <th>Last Service Date</th>
-                <th>Jewelry Photo</th>
-              
-               
-
-<th>Delete</th>
-
-</tr>
-        </thead>
-        <tbody>
-        {userData.jewelryList.map((jewelry) => {
-            return (
-             
-            <tr key={jewelry._id}>
-                <td>
-                {jewelry.jewelryName}
-                </td>
-                <td>
-                {jewelry.description}
-                </td>
-                <td>{jewelry.jewelryPrice}</td>
-                <td>{jewelry.assessedValue}</td>
-                <td>{jewelry.jewelryAssessor}</td>
-                <td>{jewelry.purchasedDate}</td>
-                <td>{jewelry.jewelryWarranty}</td>
-                <td>{jewelry.serviceDate}</td>
-                <td><img width='200' height='200' src={jewelry.jewelryPhoto}/></td>
-               
-                
-                <td>  <button style={{backgroundColor: "red"}} onClick={() => handleDeleteJewelry(jewelry._id)}>
-                    Delete this Item!
-                  </button></td>
-
-            </tr>
-
-
-            );
-          })}
-          </tbody>
-    </table>
-     
-    
-
-        </div>
       </div>
-    );
-  }
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Assessed Value</th>
 
+              <th>Assessor</th>
+              <th>Purchase Date</th>
+              <th>Warranty Expiration Date</th>
+              <th>Last Service Date</th>
+              <th>Jewelry Photo</th>
+
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {userData.jewelryList.map((jewelry) => {
+              return (
+                <tr key={jewelry._id}>
+                  <td>{jewelry.jewelryName}</td>
+                  <td>{jewelry.description}</td>
+                  <td>{jewelry.jewelryPrice}</td>
+                  <td>{jewelry.assessedValue}</td>
+                  <td>{jewelry.jewelryAssessor}</td>
+                  <td>{jewelry.purchasedDate}</td>
+                  <td>{jewelry.jewelryWarranty}</td>
+                  <td>{jewelry.serviceDate}</td>
+                  <td>
+                    <img width="200" height="200" src={jewelry.jewelryPhoto} />
+                  </td>
+
+                  <td>
+                    {" "}
+                    <button
+                      style={{ backgroundColor: "red" }}
+                      onClick={() => handleDeleteJewelry(jewelry._id)}
+                    >
+                      Delete this Item!
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
 
 export default JewelryList;

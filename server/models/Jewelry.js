@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
@@ -36,11 +36,10 @@ const jewelrySchema = new Schema({
   serviceDate: {
     type: Date,
   },
-  jewelryPhoto:  {
+  jewelryPhoto: {
     type: String,
-    
-    },
-  receiptPhoto:  {
+  },
+  receiptPhoto: {
     type: String,
   },
   createdAt: {
@@ -48,6 +47,5 @@ const jewelrySchema = new Schema({
     default: Date.now,
   },
 });
-
 
 module.exports = jewelrySchema;
